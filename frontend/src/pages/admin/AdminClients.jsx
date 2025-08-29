@@ -68,7 +68,7 @@ const AdminClients = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/clients`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/clients`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setClients(response.data);
