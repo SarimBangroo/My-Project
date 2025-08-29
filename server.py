@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
@@ -43,3 +44,26 @@ async def health_check():
 @app.get("/api/admin/vehicles")
 async def list_admin_vehicles():
     return {"status": "success", "data": []}
+
+# ------------ SITE SETTINGS ------------
+class SiteSettings(BaseModel):
+    company_name: str
+    tagline: str
+    logo_url: str
+
+# temporary in-memory data
+site_settings = SiteSettings(
+    company_name="G.M.B Travels Kashmir",
+    tagline="Discover Paradise on Earth",
+    logo_url="https://example.com/logo.jpg"
+)
+
+@app.get("/api/site-settings")
+async def get_site_settings():
+    return site_settings
+
+@app.put("/api/site-settings")
+async def update_site_settings(settings: SiteSettings):
+    global site_settings
+    site_settings = settings
+    return {"message": "Site settings updated successfully", "data": site_settings}
