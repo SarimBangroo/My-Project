@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from typing import List
 import os
 
 app = FastAPI(title="GMB Travels API")
@@ -67,3 +68,46 @@ async def update_site_settings(settings: SiteSettings):
     global site_settings
     site_settings = settings
     return {"message": "Site settings updated successfully", "data": site_settings}
+
+# --- Dummy Models ---
+class TeamMember(BaseModel):
+    id: int
+    name: str
+    role: str
+    photo_url: str
+
+class Popup(BaseModel):
+    id: int
+    title: str
+    message: str
+    is_active: bool
+
+# --- Dummy Data ---
+dummy_team = [
+    {"id": 1, "name": "John Doe", "role": "CEO", "photo_url": "https://via.placeholder.com/150"},
+    {"id": 2, "name": "Jane Smith", "role": "Manager", "photo_url": "https://via.placeholder.com/150"},
+]
+
+dummy_popups = [
+    {"id": 1, "title": "Special Offer", "message": "Get 10% off on bookings!", "is_active": True}
+]
+
+# --- Team Routes ---
+@app.get("/api/admin/team", response_model=List[TeamMember])
+async def get_team():
+    return dummy_team
+
+@app.post("/api/admin/team", response_model=TeamMember)
+async def add_team_member(member: TeamMember):
+    dummy_team.append(member.dict())
+    return member
+
+# --- Popups Routes ---
+@app.get("/api/admin/popups", response_model=List[Popup])
+async def get_popups():
+    return dummy_popups
+
+@app.post("/api/admin/popups", response_model=Popup)
+async def add_popup(popup: Popup):
+    dummy_popups.append(popup.dict())
+    return popup
