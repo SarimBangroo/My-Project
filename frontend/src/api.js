@@ -32,4 +32,10 @@ export const createBlog = (data) => api.post("/admin/blogs", data);
 export const updateBlog = (id, data) => api.put(`/admin/blogs/${id}`, data);
 export const deleteBlog = (id) => api.delete(`/admin/blogs/${id}`);
 
+// Tour Packages
+export const fetchPackages = () => API.get("/packages");  
+export const createPackage = (data) => API.post("/admin/packages", data);  
+export const updatePackage = (id, data) => API.put(`/admin/packages/${id}`, data);  
+export const deletePackage = (id) => API.delete(`/admin/packages/${id}`);
+
 export default api;
