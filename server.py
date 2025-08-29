@@ -55,7 +55,7 @@ class SiteSettings(BaseModel):
 site_settings = SiteSettings(
     company_name="G.M.B Travels Kashmir",
     tagline="Discover Paradise on Earth",
-    logo_url="https://example.com/logo.jpg"
+    logo_url="https://www.gmbtourandtravels.com/logo.jpg"
 )
 
 @app.get("/api/site-settings")
