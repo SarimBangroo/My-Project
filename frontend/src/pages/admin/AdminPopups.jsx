@@ -106,7 +106,7 @@ const AdminPopups = () => {
       
       if (editingPopup) {
         await axios.put(
-          `${process.env.REACT_APP_BACKEND_URL}/admin/popups/${editingPopup.id}`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/admin/popups/${editingPopup.id}`,
           submitData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -158,7 +158,7 @@ const AdminPopups = () => {
 
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/popups/${popupId}`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/admin/popups/${popupId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Popup deleted successfully!');
@@ -173,7 +173,7 @@ const AdminPopups = () => {
     try {
       const token = localStorage.getItem('adminToken');
       await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/admin/popups/${popup.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/admin/popups/${popup.id}`,
         { isActive: !popup.isActive },
         { headers: { Authorization: `Bearer ${token}` } }
       );
