@@ -1,33 +1,35 @@
 // frontend/src/api.js
 import axios from "axios";
 
+// Pick backend URL from .env or fallback to local
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
+// Create axios instance
 const api = axios.create({
-  baseURL: `${API_URL}/api`,  // 🔥 ensures every call has /api prefix
+  baseURL: `${API_URL}/api`,  // all calls automatically start with /api
   withCredentials: false,     // change to true if you add auth later
 });
 
-// Example: Team
-export const fetchTeam = () => API.get("/api/admin/team");
-export const addTeamMember = (data) => API.post("/api/admin/team", data);
-export const updateTeamMember = (id, data) => API.put(`/api/admin/team/${id}`, data);
-export const deleteTeamMember = (id) => API.delete(`/api/admin/team/${id}`);
+// ===== TEAM =====
+export const fetchTeam = () => api.get("/admin/team");
+export const addTeamMember = (data) => api.post("/admin/team", data);
+export const updateTeamMember = (id, data) => api.put(`/admin/team/${id}`, data);
+export const deleteTeamMember = (id) => api.delete(`/admin/team/${id}`);
 
-// Example: Site Settings
-export const fetchSiteSettings = () => API.get("/api/admin/site-settings");
-export const updateSiteSettings = (data) => API.put("/api/admin/site-settings", data);
+// ===== SITE SETTINGS =====
+export const fetchSiteSettings = () => api.get("/admin/site-settings");
+export const updateSiteSettings = (data) => api.put("/admin/site-settings", data);
 
-// Example: Vehicles
-export const fetchVehicles = () => API.get("/api/admin/vehicles");
-export const createVehicle = (data) => API.post("/api/admin/vehicles", data);
-export const updateVehicle = (id, data) => API.put(`/api/admin/vehicles/${id}`, data);
-export const deleteVehicle = (id) => API.delete(`/api/admin/vehicles/${id}`);
+// ===== VEHICLES =====
+export const fetchVehicles = () => api.get("/admin/vehicles");
+export const createVehicle = (data) => api.post("/admin/vehicles", data);
+export const updateVehicle = (id, data) => api.put(`/admin/vehicles/${id}`, data);
+export const deleteVehicle = (id) => api.delete(`/admin/vehicles/${id}`);
 
-// Example: Blogs
-export const fetchBlogs = () => API.get("/api/admin/blogs");
-export const createBlog = (data) => API.post("/api/admin/blogs", data);
-export const updateBlog = (id, data) => API.put(`/api/admin/blogs/${id}`, data);
-export const deleteBlog = (id) => API.delete(`/api/admin/blogs/${id}`);
+// ===== BLOGS =====
+export const fetchBlogs = () => api.get("/admin/blogs");
+export const createBlog = (data) => api.post("/admin/blogs", data);
+export const updateBlog = (id, data) => api.put(`/admin/blogs/${id}`, data);
+export const deleteBlog = (id) => api.delete(`/admin/blogs/${id}`);
 
-export default API;
+export default api;
