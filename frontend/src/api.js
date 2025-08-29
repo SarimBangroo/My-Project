@@ -1,8 +1,11 @@
+// frontend/src/api.js
 import axios from "axios";
 
-// Base URL from environment variable
-const API = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+
+const api = axios.create({
+  baseURL: `${API_URL}/api`,  // 🔥 ensures every call has /api prefix
+  withCredentials: false,     // change to true if you add auth later
 });
 
 // Example: Team
