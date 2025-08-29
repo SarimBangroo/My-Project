@@ -65,7 +65,7 @@ const AdminTeam = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/team`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/team`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTeamMembers(response.data);
@@ -108,7 +108,7 @@ const AdminTeam = () => {
         delete updateData.password; // Don't send password on update
         
         await axios.put(
-          `${process.env.REACT_APP_BACKEND_URL}/admin/team/${editingMember.id}`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/admin/team/${editingMember.id}`,
           updateData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -155,7 +155,7 @@ const AdminTeam = () => {
 
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/team/${memberId}`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/admin/team/${memberId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Team member deleted successfully!');
@@ -178,7 +178,7 @@ const AdminTeam = () => {
       formData.append('new_password', newPassword);
       
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/admin/team/${changingPasswordMember.id}/change-password`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/admin/team/${changingPasswordMember.id}/change-password`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
