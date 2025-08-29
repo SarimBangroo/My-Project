@@ -22,7 +22,7 @@ export const SiteSettingsProvider = ({ children }) => {
   const fetchSiteSettings = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/site-settings`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/site-settings`);
       setSiteSettings(response.data);
       setError(null);
     } catch (err) {
