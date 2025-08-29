@@ -113,3 +113,13 @@ async def get_popups():
 async def add_popup(popup: Popup):
     dummy_popups.append(popup.dict())
     return popup
+
+# --- Public Routes (for website) ---
+@app.get("/api/site-settings")
+async def get_public_site_settings():
+    return site_settings
+
+@app.get("/api/popups")
+async def get_public_popups():
+    return dummy_popups
+
