@@ -44,7 +44,7 @@ const PopupDisplay = ({ currentPage = 'home' }) => {
 
   const fetchActivePopups = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/popups`);
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/popups`);
       setPopups(response.data);
     } catch (error) {
       console.error('Error fetching popups:', error);
