@@ -87,7 +87,7 @@ const AdminSiteSettings = () => {
   const fetchSettings = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/site-settings`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/site-settings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSettings(response.data);
