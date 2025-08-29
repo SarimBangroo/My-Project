@@ -69,7 +69,7 @@ const AdminBlog = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/blog/posts`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/blog/posts`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(response.data);
