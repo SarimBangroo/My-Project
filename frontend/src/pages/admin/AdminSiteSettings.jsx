@@ -103,7 +103,7 @@ const AdminSiteSettings = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/admin/site-settings`, settings, {
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/admin/site-settings`, settings, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Site settings updated successfully!');
@@ -123,7 +123,7 @@ const AdminSiteSettings = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/site-settings/reset`, {}, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/admin/site-settings/reset`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSettings(response.data.settings);
