@@ -6,7 +6,13 @@ import os
 app = FastAPI(title="GMB Travels API")
 
 # CORS
-origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
+origins = [
+    "http://localhost:3000",  # for local dev
+    "https://my-project.vercel.app",  # your Vercel frontend
+    "https://www.gmbtourandtravels.com",  # your custom domain
+    "https://gmbtourandtravels.com"
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[o.strip() for o in origins if o.strip()],
