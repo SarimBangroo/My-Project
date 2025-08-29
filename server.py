@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -17,7 +17,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o.strip() for o in origins if o.strip()],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -60,60 +60,66 @@ class Popup(BaseModel):
     message: str
     is_active: bool
 
-# ------------ DUMMY DATA ------------
-site_settings = SiteSettings(
-    company_name="G.M.B Travels Kashmir",
-    tagline="Discover Paradise on Earth",
-    logo_url="https://www.gmbtourandtravels.com/logo.jpg"
-)
 
-dummy_team = [
-    {"id": 1, "name": "John Doe", "role": "CEO", "photo_url": "https://via.placeholder.com/150"},
-    {"id": 2, "name": "Jane Smith", "role": "Manager", "photo_url": "https://via.placeholder.com/150"},
-]
 
-dummy_popups = [
-    {"id": 1, "title": "Special Offer", "message": "Get 10% off on bookings!", "is_active": True}
-]
+# ------------  SITE SETTINGS ------------
 
-# ------------ PUBLIC ROUTES (for website) ------------
 @app.get("/api/site-settings")
 async def get_public_site_settings():
-    return site_settings
+    settings = await db.site_settings.find_one({})
+    if not settings:
+        return {"company_name": "", "tagline": "", "logo_url": ""}
+    settings["_id"] = str(settings["_id"])
+    return settings
 
-@app.get("/api/team", response_model=List[TeamMember])
-async def get_public_team():
-    return dummy_team
-
-@app.get("/api/popups", response_model=List[Popup])
-async def get_public_popups():
-    return dummy_popups
-
-# ------------ ADMIN ROUTES (for dashboard) ------------
 @app.get("/api/admin/site-settings")
 async def get_admin_site_settings():
-    return site_settings
+    return await get_public_site_settings()
 
 @app.put("/api/admin/site-settings")
 async def update_admin_site_settings(settings: SiteSettings):
-    global site_settings
-    site_settings = settings
-    return {"message": "Site settings updated successfully", "data": site_settings}
+    await db.site_settings.delete_many({})
+    result = await db.site_settings.insert_one(settings.dict())
+    return {"message": "Site settings updated successfully", "id": str(result.inserted_id)}
+
+
+# ---------------- TEAM ----------------
+@app.get("/api/team", response_model=List[TeamMember])
+async def get_public_team():
+    members = []
+    async for member in db.team.find({}):
+        member["_id"] = str(member["_id"])
+        members.append(member)
+    return members
 
 @app.get("/api/admin/team", response_model=List[TeamMember])
 async def get_admin_team():
-    return dummy_team
+    return await get_public_team()
 
-@app.post("/api/admin/team", response_model=TeamMember)
+@app.post("/api/admin/team")
 async def add_admin_team_member(member: TeamMember):
-    dummy_team.append(member.dict())
-    return member
+    result = await db.team.insert_one(member.dict())
+    return {"message": "Team member added", "id": str(result.inserted_id)}
+
+
+# ---------------- POPUPS ----------------
+
+@app.get("/api/popups", response_model=List[Popup])
+async def get_public_popups():
+    popups = []
+    async for popup in db.popups.find({}):
+        popup["_id"] = str(popup["_id"])
+        popups.append(popup)
+    return popups
 
 @app.get("/api/admin/popups", response_model=List[Popup])
 async def get_admin_popups():
-    return dummy_popups
+    return await get_public_popups()
 
-@app.post("/api/admin/popups", response_model=Popup)
+@app.post("/api/admin/popups")
 async def add_admin_popup(popup: Popup):
-    dummy_popups.append(popup.dict())
-    return popup
+    result = await db.popups.insert_one(popup.dict())
+    return {"message": "Popup added", "id": str(result.inserted_id)}
+
+
+
