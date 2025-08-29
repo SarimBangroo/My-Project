@@ -56,7 +56,7 @@ const AdminPopups = () => {
     try {
       setIsLoading(true);
       const token = localStorage.getItem('adminToken');
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/popups`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin/popups`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPopups(response.data);
