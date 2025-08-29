@@ -59,17 +59,14 @@ site_settings = SiteSettings(
     logo_url="https://www.gmbtourandtravels.com/logo.jpg"
 )
 
-# ✅ Admin-prefixed routes
+# ✅ Admin routes for site settings
 @app.get("/api/admin/site-settings")
-async def get_site_settings():
+async def get_admin_site_settings():
     return site_settings
     
-@app.get("/api/site-settings")
-async def get_site_settings():
-    return site_settings
 
-@app.put("/api/site-settings")
-async def update_site_settings(settings: SiteSettings):
+@app.put("/api/admin/site-settings")
+async def update_admin_site_settings(settings: SiteSettings):
     global site_settings
     site_settings = settings
     return {"message": "Site settings updated successfully", "data": site_settings}
