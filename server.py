@@ -59,6 +59,11 @@ site_settings = SiteSettings(
     logo_url="https://www.gmbtourandtravels.com/logo.jpg"
 )
 
+# ✅ Admin-prefixed routes
+@app.get("/api/admin/site-settings")
+async def get_site_settings():
+    return site_settings
+    
 @app.get("/api/site-settings")
 async def get_site_settings():
     return site_settings
