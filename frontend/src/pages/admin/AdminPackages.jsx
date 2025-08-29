@@ -8,6 +8,8 @@ import { Badge } from '../../components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../../components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select';
 import ImageUpload from '../../components/ImageUpload';
+import { fetchPackages as getPackages } from "../../api"; // adjust path if needed
+
 import { 
   Plus,
   Edit,
@@ -61,9 +63,16 @@ const AdminPackages = () => {
   }, [navigate]);
 
   const fetchPackages = async () => {
-    try {
-      setIsLoading(true);
-      // Mock data for now - replace with actual API call
+  try {
+    setIsLoading(true);
+    const response = await getPackages();
+    setPackages(response.data); // assuming backend returns JSON array
+  } catch (error) {
+    console.error("Error fetching packages", error);
+  } finally {
+    setIsLoading(false);
+  }
+};
       const mockPackages = [
         {
           id: '1',
