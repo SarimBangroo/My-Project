@@ -12,6 +12,19 @@ import datetime as dt
 
 app = FastAPI(title="GMB Travels API")
 
+@app.post("/api/admin/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    try:
+        # Save locally (or integrate with cloud storage like S3 later)
+        contents = await file.read()
+        file_path = f"uploads/{file.filename}"
+        with open(file_path, "wb") as f:
+            f.write(contents)
+
+        return {"success": True, "url": f"/{file_path}"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+        
 # ---------------- CORS ----------------
 # Allow your custom domains + any Vercel preview domain
 ALLOWED_ORIGINS = [
