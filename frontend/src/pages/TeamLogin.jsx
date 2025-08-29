@@ -32,7 +32,7 @@ const TeamLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/team/login`, credentials);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/team/login`, credentials);
       
       if (response.data.access_token) {
         localStorage.setItem('teamToken', response.data.access_token);
