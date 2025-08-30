@@ -31,11 +31,11 @@ export const SiteSettingsProvider = ({ children }) => {
       // Set fallback default settings
       setSiteSettings({
         contactInfo: {
-          phone: ["+91 98765 43210", "+91 98765 43211"],
-          email: ["info@gmbtravelskashmir.com", "bookings@gmbtravelskashmir.com"],
-          address: ["Main Office: Srinagar, Kashmir, India", "Branch: Dal Lake Area"],
+          phone: ["+91 8899988816" "+91 9682669235"],
+          email: ["info@gmbtravelskashmir.com", "gmbtourandtravels@gmail.com"],
+          address: ["Main Office: Fateh Kadal G.M Bangroo Building Near J&K Bank Srinagar, Kashmir, India", "Branch: Dal Lake Area"],
           workingHours: ["Mon - Sat: 9:00 AM - 8:00 PM", "Sun: 10:00 AM - 6:00 PM"],
-          whatsapp: "+919876543210"
+          whatsapp: "+918899988816"
         },
         socialMedia: {
           facebook: "",
@@ -48,7 +48,7 @@ export const SiteSettingsProvider = ({ children }) => {
           name: "G.M.B Travels Kashmir",
           tagline: "Discover Paradise on Earth",
           description: "Your trusted partner for exploring the magnificent beauty of Kashmir. We create unforgettable experiences that last a lifetime.",
-          logo: "https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/u7oxyvzc_logo.jpg",
+          logoUrl: "https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/u7oxyvzc_logo.jpg",
           aboutText: "With years of experience in Kashmir tourism, G.M.B Travels Kashmir has been the trusted companion for travelers seeking authentic experiences in the paradise on earth.",
           missionStatement: "We specialize in creating unforgettable journeys through Kashmir's breathtaking landscapes, from the serene Dal Lake to the snow-capped peaks of Gulmarg."
         },
