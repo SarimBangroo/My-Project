@@ -26,11 +26,11 @@ import axios from 'axios';
 const AdminSiteSettings = () => {
   const [settings, setSettings] = useState({
     contactInfo: {
-      phone: ["+91 98765 43210", "+91 98765 43211"],
-      email: ["info@gmbtravelskashmir.com", "bookings@gmbtravelskashmir.com"],
-      address: ["Main Office: Srinagar, Kashmir, India", "Branch: Dal Lake Area"],
+      phone: ["+91 8899988816", "+91 9682669235"],
+      email: ["info@gmbtravelskashmir.com", "gmbtourandtrvels@gmail.com"],
+      address: ["Main Office: Fateh Kadal G.M Bangroo Building Near J&K Bank Srinagar, Kashmir, India", "Branch: Dal Lake Area"],
       workingHours: ["Mon - Sat: 9:00 AM - 8:00 PM", "Sun: 10:00 AM - 6:00 PM"],
-      whatsapp: "+919876543210"
+      whatsapp: "+918899988816"
     },
     socialMedia: {
       facebook: "",
@@ -43,7 +43,7 @@ const AdminSiteSettings = () => {
       name: "G.M.B Travels Kashmir",
       tagline: "Discover Paradise on Earth",
       description: "Your trusted partner for exploring the magnificent beauty of Kashmir.",
-      logo: "",
+      logoUrl: "",
       aboutText: "",
       missionStatement: ""
     },
@@ -447,9 +447,9 @@ const AdminSiteSettings = () => {
               </div>
 
               <div>
-                <Label htmlFor="logo">Logo URL</Label>
+                <Label htmlFor="logoUrl">Logo URL</Label>
                 <Input
-                  id="logo"
+                  id="logoUrl"
                   value={settings.companyInfo.logo}
                   onChange={(e) => handleInputChange('companyInfo', 'logo', e.target.value)}
                   placeholder="https://example.com/logo.jpg"
