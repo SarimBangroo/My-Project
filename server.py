@@ -1,12 +1,14 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from motor.motor_asyncio import AsyncIOMotorClient
 from typing import List, Optional
 from bson import ObjectId
+from pathlib import Path
 from pymongo import ReturnDocument
 from uuid import uuid4
+import shutil
 import os
 import datetime as dt
 
@@ -27,21 +29,23 @@ async def upload_image(file: UploadFile = File(...)):
         
 # ---------------- CORS ----------------
 # Allow your custom domains + any Vercel preview domain
-ALLOWED_ORIGINS = [
+origins = [
     "http://localhost:3000",
-    "https://gmbtourandtravels.com",
     "https://www.gmbtourandtravels.com",
-    "https://my-project.vercel.app",
+    "https://gmbtourandtravels.com",
+    # add your current Vercel preview explicitly too if you want:
     "https://my-project-six-ivory-20.vercel.app",
 ]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[o for o in ALLOWED_ORIGINS if o],
-    allow_origin_regex=r"https://.*\.vercel\.app",  # allow all vercel.app previews
-    allow_credentials=False,
+    allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app$",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---------------- Static: uploads ----------------
 UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads")
