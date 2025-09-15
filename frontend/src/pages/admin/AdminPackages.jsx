@@ -71,55 +71,54 @@ const AdminPackages = () => {
     console.error("Error fetching packages", error);
     toast.error("Failed to fetch packages");
 
-    // Fallback mock data
-      const mockPackages = [
-        {
-          id: '1',
-          title: 'Kashmir Valley Explorer - 7 Days 6 Nights',
-          description: 'Complete Kashmir experience covering Srinagar, Gulmarg, Pahalgam, and Sonamarg',
-          duration: '7D/6N',
-          price: 25000,
-          groupSize: '2-6 People',
-          image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/bm97gdwu_pexels-azam-khan-12040331.jpg',
-          highlights: ['Stay in Dal Lake Houseboat', 'Gulmarg Gondola Ride', 'Pahalgam Valley Tour'],
-          category: 'premium',
-          status: 'active',
-          createdAt: '2024-11-15T10:30:00Z',
-        },
-        {
-          id: '2',
-          title: 'Srinagar Deluxe Package - 5 Days 4 Nights',
-          description: 'Luxury stay and experiences in the summer capital of Kashmir',
-          duration: '5D/4N',
-          price: 18000,
-          groupSize: '2-4 People',
-          image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/rudsgdbz_pexels-azeen-shah-10542627.jpg',
-          highlights: ['3-Star Deluxe Accommodation', 'Dal Lake Shikara Ride', 'Nishat & Shalimar Gardens'],
-          category: 'standard',
-          status: 'active',
-          createdAt: '2024-11-10T09:15:00Z',
-        },
-        {
-          id: '3',
-          title: 'Kashmir Adventure Special',
-          description: 'Perfect blend of adventure and scenic beauty for thrill seekers',
-          duration: '6D/5N',
-          price: 22000,
-          groupSize: '4-8 People',
-          image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/u2wmxitn_pexels-abhilash-mishra-1539700.jpg',
-          highlights: ['Trekking in Pahalgam', 'River Rafting in Lidder', 'Gulmarg Skiing'],
-          category: 'adventure',
-          status: 'inactive',
-          createdAt: '2024-11-05T14:20:00Z',
-        }
-      ];
-      setPackages(mockPackages);
-    } catch (error) {
-      toast.error('Failed to fetch packages');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    // ✅ fallback data INSIDE catch
+    const mockPackages = [
+      {
+        id: '1',
+        title: 'Kashmir Valley Explorer - 7 Days 6 Nights',
+        description: 'Complete Kashmir experience covering Srinagar, Gulmarg, Pahalgam, and Sonamarg',
+        duration: '7D/6N',
+        price: 25000,
+        groupSize: '2-6 People',
+        image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/bm97gdwu_pexels-azam-khan-12040331.jpg',
+        highlights: ['Stay in Dal Lake Houseboat', 'Gulmarg Gondola Ride', 'Pahalgam Valley Tour'],
+        category: 'premium',
+        status: 'active',
+        createdAt: '2024-11-15T10:30:00Z',
+      },
+      {
+        id: '2',
+        title: 'Srinagar Deluxe Package - 5 Days 4 Nights',
+        description: 'Luxury stay and experiences in the summer capital of Kashmir',
+        duration: '5D/4N',
+        price: 18000,
+        groupSize: '2-4 People',
+        image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/rudsgdbz_pexels-azeen-shah-10542627.jpg',
+        highlights: ['3-Star Deluxe Accommodation', 'Dal Lake Shikara Ride', 'Nishat & Shalimar Gardens'],
+        category: 'standard',
+        status: 'active',
+        createdAt: '2024-11-10T09:15:00Z',
+      },
+      {
+        id: '3',
+        title: 'Kashmir Adventure Special',
+        description: 'Perfect blend of adventure and scenic beauty for thrill seekers',
+        duration: '6D/5N',
+        price: 22000,
+        groupSize: '4-8 People',
+        image: 'https://customer-assets.emergentagent.com/job_gmb-tours/artifacts/u2wmxitn_pexels-abhilash-mishra-1539700.jpg',
+        highlights: ['Trekking in Pahalgam', 'River Rafting in Lidder', 'Gulmarg Skiing'],
+        category: 'adventure',
+        status: 'inactive',
+        createdAt: '2024-11-05T14:20:00Z',
+      }
+    ];
+    setPackages(mockPackages);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const handleInputChange = (field, value) => {
     setPackageForm(prev => ({ ...prev, [field]: value }));
