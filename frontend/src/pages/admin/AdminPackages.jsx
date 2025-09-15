@@ -111,7 +111,7 @@ const AdminPackages = () => {
           highlights: ['Trekking in Pahalgam', 'River Rafting in Lidder', 'Gulmarg Skiing'],
           category: 'adventure',
           status: 'inactive',
-          createdAt: '2024-11-05T14:20:00Z'
+          createdAt: '2024-11-05T14:20:00Z',
         }
       ];
       setPackages(mockPackages);
