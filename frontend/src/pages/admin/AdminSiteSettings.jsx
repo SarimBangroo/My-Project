@@ -43,7 +43,7 @@ const AdminSiteSettings = () => {
       name: "G.M.B Travels Kashmir",
       tagline: "Discover Paradise on Earth",
       description: "Your trusted partner for exploring the magnificent beauty of Kashmir.",
-      logoUrl: "",
+      logoUrl: "/logo.jpg",
       aboutText: "",
       missionStatement: ""
     },
