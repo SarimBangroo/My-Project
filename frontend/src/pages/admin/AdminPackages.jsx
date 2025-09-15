@@ -85,7 +85,7 @@ const AdminPackages = () => {
           highlights: ['Stay in Dal Lake Houseboat', 'Gulmarg Gondola Ride', 'Pahalgam Valley Tour'],
           category: 'premium',
           status: 'active',
-          createdAt: '2024-11-15T10:30:00Z'
+          createdAt: '2024-11-15T10:30:00Z',
         },
         {
           id: '2',
@@ -98,7 +98,7 @@ const AdminPackages = () => {
           highlights: ['3-Star Deluxe Accommodation', 'Dal Lake Shikara Ride', 'Nishat & Shalimar Gardens'],
           category: 'standard',
           status: 'active',
-          createdAt: '2024-11-10T09:15:00Z'
+          createdAt: '2024-11-10T09:15:00Z',
         },
         {
           id: '3',
