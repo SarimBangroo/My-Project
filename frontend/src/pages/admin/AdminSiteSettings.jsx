@@ -30,7 +30,7 @@ const AdminSiteSettings = () => {
       email: ["info@gmbtravelskashmir.com", "gmbtourandtrvels@gmail.com"],
       address: ["Main Office: Fateh Kadal G.M Bangroo Building Near J&K Bank Srinagar, Kashmir, India", "Branch: Dal Lake Area"],
       workingHours: ["Mon - Sat: 9:00 AM - 8:00 PM", "Sun: 10:00 AM - 6:00 PM"],
-      whatsapp: "+918899988816"
+      whatsapp: "+918899988816",
     },
     socialMedia: {
       facebook: "",
