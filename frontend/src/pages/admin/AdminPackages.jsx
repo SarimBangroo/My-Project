@@ -62,17 +62,16 @@ const AdminPackages = () => {
     fetchPackages();
   }, [navigate]);
 
-  const fetchPackages = async () => {
+ const fetchPackages = async () => {
   try {
     setIsLoading(true);
     const response = await getPackages();
-    setPackages(response.data); // assuming backend returns JSON array
+    setPackages(response.data); // backend data
   } catch (error) {
     console.error("Error fetching packages", error);
-  } finally {
-    setIsLoading(false);
-  }
-};
+    toast.error("Failed to fetch packages");
+
+    // Fallback mock data
       const mockPackages = [
         {
           id: '1',
